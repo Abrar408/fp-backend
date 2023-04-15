@@ -34,10 +34,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', require('./routes/auth'));
-app.use('/refresh', require('./routes/refresh'));
-app.use('/logout', require('./routes/logout'));
+// app.use('/refresh', require('./routes/refresh'));
+// app.use('/logout', require('./routes/logout'));
 
 // app.use(verifyJWT);
+app.use('/job', require('./routes/job'));
 // app.use('/following', require('./routes/following'));
 // app.use('/followers', require('./routes/followers'));
 // app.use('/userList', require('./routes/list'));

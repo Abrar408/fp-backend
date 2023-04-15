@@ -20,7 +20,7 @@ router.get('/linkedin/callback',
   //     { "id":req.user.id },
   //     process.env.REFRESH_TOKEN_SECRET,  
   //     {expiresIn: '1d'}
-  // );
+  // ); 
   //   // console.log(req.user.id);
   //   await User.updateOne({_id:req.user.id},{$set:{refreshToken}});
   //   res.cookie('jwt',refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite:'none', secure: true});
