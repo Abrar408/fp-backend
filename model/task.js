@@ -4,13 +4,21 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
     jobName:String,
-    assignedTo:String,
+    assignedTo:{
+        type:String,
+    },
     createdOn:{
         type:String,
-        default:Date.now()
+        default:format(Date.now(),'dd-MM-yyyy')
     },
-    dueDate:Date,  
-    assignedBy:String,
-    task:String
+    dueDate:String,  
+    assignedBy:{
+        type:String,
+    },
+    task:String,
+    status:{
+        type:String,
+        default:'pending...'
+    }
 });
 module.exports = mongoose.model('Task', taskSchema); 
