@@ -10,6 +10,10 @@ const userSchema = new Schema({
     },
     email:String,  
     password:String,
-    refreshToken:String
+    refreshToken:String,
+    admin:{
+        type:Boolean,
+        default:false
+    }
 });
 module.exports = mongoose.model('User', userSchema); 

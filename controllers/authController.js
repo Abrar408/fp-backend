@@ -39,7 +39,7 @@ const login = async (req, res) => {
             process.env.REFRESH_TOKEN_SECRET,
             {expiresIn: '1d'}
         );
-        const resCred = {username:result.username,email:result.email}
+        const resCred = {username:result.username,email:result.email,admin:result.admin}
         await User.updateOne({_id:result.id},{$set:{refreshToken}});
         res.cookie('jwt',refreshToken, {httpOnly: true, maxAge: 24*60*60*1000, sameSite:'none', secure: true});
         res.status(200).json({resCred,accessToken}); 

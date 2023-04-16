@@ -18,6 +18,19 @@ connectDB();
 
 app.use(logger) ;//log requests to console and logfile
 
+const io = require('socket.io')(5000,{
+  cors:{
+    origin:'*',
+  }
+});
+io.on('connection', socket => {
+  console.log(socket.id)
+  socket.on('taskCreated',()=>{
+    io.emit('dashboard','')
+    console.log('recieved')
+  })
+})
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
@@ -34,8 +47,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', require('./routes/auth'));
-// app.use('/refresh', require('./routes/refresh'));
-// app.use('/logout', require('./routes/logout'));
+app.use('/refresh', require('./routes/refresh'));
+app.use('/logout', require('./routes/logout'));
 
 // app.use(verifyJWT);
 app.use('/job', require('./routes/job'));

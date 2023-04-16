@@ -7,7 +7,7 @@ const handleRefreshToken = async (req, res) => {
     const refreshToken = cookies.jwt;
     const result = await User.findOne({refreshToken}).exec();
     if(!result) return res.status(403).send('not found'); 
-    // console.log(result._id);
+    // console.log(result._id);  
     jwt.verify(
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
@@ -20,7 +20,7 @@ const handleRefreshToken = async (req, res) => {
                 {expiresIn: '1h'}                
             );
             
-            const resCred = {username:result.username,email:result.email}
+            const resCred = {username:result.username,email:result.email,admin:result.admin}
             res.status(200).json({resCred,accessToken});
         }
     )
