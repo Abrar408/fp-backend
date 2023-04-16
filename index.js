@@ -41,7 +41,7 @@ app.use('/auth', require('./routes/auth'));
 app.use('/job', require('./routes/job'));
 // app.use('/following', require('./routes/following'));
 // app.use('/followers', require('./routes/followers'));
-// app.use('/userList', require('./routes/list'));
+app.use('/userList', require('./routes/list'));
 
 app.use(errorHandler); //log errors to errorLog file
 
