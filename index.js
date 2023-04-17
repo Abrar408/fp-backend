@@ -27,7 +27,9 @@ io.on('connection', socket => {
   console.log(socket.id)
   socket.on('taskCreated',()=>{
     io.emit('dashboard','')
-    console.log('recieved')
+  })
+  socket.on('dashboard',()=>{
+    io.emit('dashboard','')
   })
 })
 

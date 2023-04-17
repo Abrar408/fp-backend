@@ -27,4 +27,21 @@ const get = async (req,res) => {
     }
     res.status(200).send(jobs);
 }
-module.exports = {create,get}
+const getAdmin = async (req,res) => {
+    let jobs = [];
+    const {assignedBy} = req.body;
+    const regex = new RegExp(`${assignedBy}`,"i");
+    const cursor = await Task.find({assignedBy:regex}).cursor();
+    if(!cursor) return res.status(200).send('no pending jobs');
+    for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+        // console.log(doc.username);
+        jobs.push(doc)
+    }
+    res.status(200).send(jobs);
+}
+const submit = async (req,res) => {
+    const {jobName} = req.body;
+    await Task.updateOne({jobName},{$set:{status:'in Review...'}})
+    res.sendStatus(200);
+}
+module.exports = {create,get,getAdmin,submit}
