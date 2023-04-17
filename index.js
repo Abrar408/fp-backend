@@ -24,7 +24,7 @@ const io = require('socket.io')(5000,{
   }
 });
 io.on('connection', socket => {
-  console.log(socket.id)
+  // console.log(socket.id)
   socket.on('taskCreated',()=>{
     io.emit('dashboard','')
   })

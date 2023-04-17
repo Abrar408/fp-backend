@@ -41,7 +41,18 @@ const getAdmin = async (req,res) => {
 }
 const submit = async (req,res) => {
     const {jobName} = req.body;
-    await Task.updateOne({jobName},{$set:{status:'in Review...'}})
+    const date = format(new Date(Date.now()),'dd-MM-yyyy');
+    await Task.updateOne({jobName},{$set:{status:'in Review...',submittedOn:date}})
     res.sendStatus(200);
 }
-module.exports = {create,get,getAdmin,submit}
+const accept = async (req,res) => {
+    const {jobName} = req.body;
+    await Task.updateOne({jobName},{$set:{status:'Completed'}})
+    res.sendStatus(200);
+}
+const reject = async (req,res) => {
+    const {jobName} = req.body;
+    await Task.updateOne({jobName},{$set:{status:'Rejected'}})
+    res.sendStatus(200);
+}
+module.exports = {create,get,getAdmin,submit,accept,reject}

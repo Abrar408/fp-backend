@@ -15,6 +15,7 @@ const taskSchema = new Schema({
     assignedBy:{
         type:String,
     },
+    submittedOn:String,
     task:String,
     status:{
         type:String,
